@@ -64,7 +64,7 @@
 6. レスポンスコードを送信
 7. UDP接続でチャットスタート
 
-```mermeid
+```mermaid
 graph TD
     A[スタート] --> B[名前入力]
     B --> C[CLI]

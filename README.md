@@ -49,3 +49,43 @@
 - [#issue1 stage1開発](https://github.com/Recursion-GroupB-Backend/Online-Chat-Messenger/issues/1)
 
 ## 次回ミーティング11/28(火) 20:00~
+
+
+# 開発議事録 (11/28)
+
+## 決めたこと
+### アクティビティ図
+処理の流れ<br>
+1. ユーザー名入力
+2. CLI or GUIの選択
+3. チャット作成or参加の選択
+4. これまでの入力値をTCPで送信
+5. サーバ側は受け取った情報を元にユーザー・チャットルームを作成
+6. レスポンスコードを送信
+7. UDP接続でチャットスタート
+
+```mermeid
+graph TD
+    A[スタート] --> B[名前入力]
+    B --> C[CLI]
+    B --> D[GUI]
+    B --> Z[プログラム終了]
+    C -- TCP通信 --> E[チャットルーム作成]
+    C -- TCP通信 --> F[チャットルーム参加]
+    E -- UDP通信 --> G[チャット]
+    F --> H[ルーム名入力]
+    H -- UDP通信 --> G
+    G --> Z[チャット終了]
+```
+
+## タスク
+**[@sei](https://github.com/takatokawazu)**
+- クラス図の作成
+
+**[@タカトさん](https://github.com/takatokawazu)**
+- stage1開発とコードレビュー
+
+**[@koyuさん](https://github.com/takatokawazu)**
+- stage1のプルリクをあげる
+
+## 次回ミーティング11/30 21:00

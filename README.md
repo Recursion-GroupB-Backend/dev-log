@@ -89,3 +89,86 @@ graph TD
 - stage1のプルリクをあげる
 
 ## 次回ミーティング11/30 21:00
+
+
+
+
+
+# 開発議事録 (11/30)
+
+## 決めたこと
+### アクティビティ図
+処理の流れ<br>
+1. ユーザー名入力
+2. CLI or GUIの選択
+3. チャット作成or参加の選択
+4. これまでの入力値をTCPで送信
+5. サーバ側は受け取った情報を元にユーザー・チャットルームを作成
+6. レスポンスコードを送信
+7. UDP接続でチャットスタート
+
+### チャットルームの作成
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Client: ユーザー名入力、
+    Client->>Client: チャットルーム名入力、
+    Client->>Server: TCP接続要求（ユーザー名、ルーム情報、リクエストコード）
+    Server->>Server: ユーザーとトークン生成
+    Server->>Server: チャットルームの生成
+    Server->>Client: TCP応答（トークン、ステータス）
+    Client->>Server: UDP接続要求（トークン）
+    Server->>Server: トークン検証とルームへの追加
+    Server->>Client: UDP応答（接続確認）
+    loop メッセージ交換
+        Client->>Server: UDPメッセージ送信
+        Server->>Client: UDPメッセージ中継
+    end
+    Client->>Server: チャット終了（切断要求）
+    Server->>Server: ユーザーとトークン削除
+```
+
+### チャットルーム参加
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Client: ユーザー名入力、
+    Client->>Client: チャットへ参加、
+    Client->>Client: 参加するルーム名の入力、
+    Client->>Server: TCP接続要求（ユーザー名、ルーム情報、リクエストコード）
+    Server->>Server: ユーザーとトークン生成
+    Server->>Server: チャットルームの生成
+    Server->>Client: TCP応答（トークン、ステータス）
+    Client->>Server: UDP接続要求（トークン）
+    Server->>Server: トークン検証とルームへの追加
+    Server->>Client: UDP応答（接続確認）
+    loop メッセージ交換
+        Client->>Server: UDPメッセージ送信
+        Server->>Client: UDPメッセージ中継
+    end
+    Client->>Server: チャット終了（切断要求）
+    Server->>Server: ユーザーとトークン削除
+```
+
+## 直近目標
+- 要件に沿ったカスタムTCPの開発
+- まずはTCP通信でチャットルームを作成する
+
+## タスク
+**[@sei](https://github.com/takatokawazu)**
+- TCPレスポンス作成
+- ルーム作成(仮データ)
+
+**[@タカトさん](https://github.com/takatokawazu)**
+- チャットルームクラス作成
+
+**[@koyuさん](https://github.com/takatokawazu)**
+- カスタムTCP作成(機能要件要確認)
+
+## 次回ミーティング12/2 10:00

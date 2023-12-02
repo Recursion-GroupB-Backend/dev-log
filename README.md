@@ -172,3 +172,36 @@ sequenceDiagram
 - カスタムTCP作成(機能要件要確認)
 
 ## 次回ミーティング12/2 10:00
+
+# 開発議事録 (12/2)
+
+## 開発期間
+- 2022年11月25日(土) 〜 2022年12月9日(土)
+
+## 決めたこと
+### 完成物ミーティングの日程調整
+- 12/16日の11:30分
+
+### TCP通信について
+-> bodyに含める値はどうするか？<br>
+RoomNameとOperationPayloadに分けて、payloadの方にルーム名とユーザー名を含めるようにする
+![image](https://github.com/Recursion-GroupB-Backend/dev-log/assets/69625901/44a758e0-2fed-4b64-93c0-ac9295b088aa)
+
+### 直近目標
+タカトさんのソースを反映して、バックエンド側でチャット生成処理を入れることでTCP通信は完了。
+その後はissueを追加していきstage2の要件を潰していく。
+
+
+## タスク
+**[@sei](https://github.com/takatokawazu)**
+- サーバ側でのレスポンス作成
+- チャットルーム生成処理の実行
+
+**[@タカトさん](https://github.com/takatokawazu)**
+- チャットルームクラスの雛形作成
+
+**[@koyuさん](https://github.com/takatokawazu)**
+- クライアント側のTCPリクエストの生成
+
+## 次回ミーティング12/5(火) 20:00~
+

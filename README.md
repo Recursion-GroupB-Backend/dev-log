@@ -311,7 +311,7 @@ RoomNameとOperationPayloadに分けて、payloadの方にルーム名とユー�
 -body
   -user_name + message
 
-### stage2完了までのタスク
+### TODO
 - hostユーザーが退出した時の処理
   - 閉じられたことをメンバーに通知
   - 退出したユーザーをChatRoomクラスのusersから削除
